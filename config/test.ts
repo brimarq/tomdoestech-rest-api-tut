@@ -1,5 +1,3 @@
-// import dotenv from "dotenv";
-// dotenv.config();
 import "dotenv/config";
 
 const dbHost = process.env.DATABASE_HOST || "localhost";

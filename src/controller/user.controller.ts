@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { omit } from "lodash";
 import logger from "../utils/logger";
 import { createUser } from "../services/user.service";
@@ -10,7 +10,8 @@ export async function createUserHandler(
 ) {
   try {
     const user = await createUser(req.body);
-    return res.send(omit(user.toJSON(), "password"));
+    // return res.send(omit(user.toJSON(), "password"));
+    return res.send(user);
   } catch (e: any) {
     logger.error(e);
     res.status(409).send(e.message);
