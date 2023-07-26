@@ -1,13 +1,13 @@
 services:
   # server:
   #   build:
-  #     context: .
+  #     context: ./server
   #     target: dev
   #   volumes:
-  #     - ./:/app
+  #     - ./server:/app
   #     - /app/node_modules
   #   ports:
-  #     - "3000:3000"
+  #     - "1337:1337"
 
   mongo:
     image: mongo
