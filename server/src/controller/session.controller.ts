@@ -30,6 +30,24 @@ export async function createUserSessionHandler(req: Request, res: Response) {
     { expiresIn: config.get("refreshTokenTtl") } // 1 year
   );
 
+  res.cookie("accessToken", accessToken, {
+    maxAge: 900000, // 15 mins
+    httpOnly: true,
+    domain: "localhost", //todo: set in env var
+    path: "/",
+    sameSite: "strict",
+    secure: false, // todo: set according to env
+  });
+
+  res.cookie("refreshToken", refreshToken, {
+    maxAge: 3.154e10, // 1 yr
+    httpOnly: true,
+    domain: "localhost", //todo: set in env var
+    path: "/",
+    sameSite: "strict",
+    secure: false, // todo: set according to env
+  });
+
   // return access & refresh tokens
   return res.send({ accessToken, refreshToken });
 }
